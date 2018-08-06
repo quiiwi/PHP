@@ -223,6 +223,137 @@ if (isset($var2)){ // la condition est vraie car $var2 existe bien
 //si on let les lignes 213 et 214 en commenaites, la première condition reste vraie, car $var1 est non définie, et la seconde devient fausse, car $var2 n'existe pas.
 //Contexte d'utilisation : les formulaires pour empty, l'existence de variable ou d'array avec isset avant de les utiliser.
 
+//------
+// L'opérateur Not qui s'écrit "!":
+$var3 = 'Je ne suis pas vide !';
+
+if (!empty($var3)) echo '$var3 n\'est pas vide <br>'; // ! pour NOT qui est une négation. Ici signifie si $var3 n'est pas vide.
+
+// phpinfo(); // fonction prédéfinie qui affiche des infos sur le contexte d'exéctuin du script
+
+echo '<h2> Condition switch </h2>';
+
+// La condition switch est une autre syntaxe pour écrire un if...elseif...elseif...else.
+
+$couleur = 'jaune';
+switch ($couleur) {
+	case 'bleu': // Si $couleur contient la valeur 'bleu' , nous exécutons l'insctruction aprs le ":" qui suit :
+		echo 'Vous aimez le bleu';
+		break; // break est obligatoire pour quitter la ondition switch une fois le case exécuté
+	
+	case 'rouge':
+		echo 'Vous aimez le rouge';
+		break;
+
+	case 'vert':
+		echo 'Vous aimez le vert';
+		break;
+
+	default: // correspond à else, le cas par défaut dans lequel on entre si aucune des valeurs précédentes n'est juste
+		echo 'Vous n\'aimez ni le bleu, ni le rouge, ni le vert <br>';
+		break;
+}
+
+if($couleur == 'bleu'){
+	echo 'Vous aimez le bleu';
+}elseif ($couleur == 'rouge'){
+	echo 'vous aimez le rouge';
+}elseif ($couleur == 'vert'){
+	echo 'Vous aimez le vert';
+}else {
+	echo 'Vous n\'aimez ni le bleu, ni le rouge, ni le vert <br>';
+}
+
+echo '<h2> Les fonctions prédéfinies </h2>';
+
+//Une fonction prédéfinie permet de réaliser un traitement spécifique prédéterminé dans le langage PHP
+
+//------
+// strpos() : 
+$email1 = 'prenom@site.fr';
+echo strpos($email1, '@'); // indique la position 6 du caractère '@' dabs la chaîne $email1 (compte à partir de 0);
+echo '<br>';
+$email2 = 'bonjour';
+echo strpos($email2, '@'); // cette ligne n'affiche rien pourtant la fonction strpost retourne bien quelque chose. Pour l'analyser nous faisons un var_dumb ci-dessous:
+var_dump(strpos($email2, '@')); // on voit grâce  au var_dumb() que la fonction retourne false quand elle ne trouve pas l'@'. var_dumb() est une insctuction d'affichage aléliorée que ;'on utilise uniquement en phase de développement (on kes retire en production).
+
+echo '<br>';
+//--------------
+//strlen() :
+$phrase = 'Mettez une phrase stylé ici';
+echo strlen($phrase); // affiche la longueur de la chaîne de caractères, ici 27. Notez que strlen compte le nombre d'octets, et que les caractères accentués compte pour 2. Si vous voulez compter précisément le nombre de caractères, on utilise : mb_strlen().
+
+//----
+// strtolower(), strtoupper(), trim()
+$message = '               Hello World!         ';
+echo strtolower ($message). '<br>'; // affiche tout en minuscules
+echo strtoupper($message). '<br>';	// affiche tout en majuscules
+
+echo strlen($message) . '<br>'; // affiche la longuer avec les espaces
+
+echo strlen(trim($message)). '<br>'; // trim() supprime les espaces au début et à la fin de la chaîne de caractères. Puis strlen affiche la longueur de cette chaîne sans les espaces.
+
+//-----
+// die() ou exit() :
+//exit('ici un message'); //affiche un message (optionnel) et arrête le scripts
+
+//die('un autre message'); // die() est un alias de exit: il fait la même chose
+
+//------
+// Le manuel PHP :
+/*
+	Pour chercher une fonction (ou autre chose) de PHP : faire a Google "PHP nom de la fonction".
+	exemple : "PHP trim"
+	Le site de référence : php.net/manual/fr/
+	A retenir : l'encadré blanc qui définit la fonction : en bleu les mots clés et les paramètres, en vert leur type, entre crochets les paramètres optionnels.
+*/
+
+echo '<h2> les fonctions utilisateur </h2>';
+
+// Des fonctions sont des morceaux de codes encapsulés dans des accolades et portant un nom, qu'on appelle au besoin pour exécuter une action précise
+
+// Les fonctions qui ne sont pas prédfinies mais décclarées par le développeur sont appelées fonctions utilisateur.
+
+// Fonction sans paramètre :
+
+function tiret(){ // on déclare une fonction avec le mot clé function, suivi du nom puis d'une paire de (), er enfin d'une paire d'accolades
+	echo '<hr>';
+}
+tiret(); // pour exécuter une fonction, on l'appelle par son nom suivi d'une paire de ()
+
+//-----
+// fonction avec paramètre et return :
+
+function afficherBonjour($nom){
+	return 'Bonjour' . $nom . ", comment vas-tu?";
+//	return "bonjour $nom, comment vas-tu ?";
+echo 'TEST'; //après un return, les instructions de la fonction ne sont pas lues
+}
+echo afficherBonjour('Luc'); // si la fonction possède un paramètre, il faut obligatoirement lui envoyer une valeur lors de son appel. La fonction nous retourne le string "Bonjour Luc, comment vas-tu?" grâce au mot return qui s'y trouve. il fait donc faire un echo pour afficher le résultat.
+
+
+// Exercice : écrivez une fonction appelée appliqueTva2 qui multiplie un nombre donnée par un taux donné.
+function appliqueTva2($nombre){
+	return $nombre * 1.2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
