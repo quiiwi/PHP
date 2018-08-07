@@ -533,6 +533,74 @@ echo '<table border = "1">';
 
 	debug($tab);
 
+	// afficher la valeur "Italie" de l'array $tab :
+
+	echo $tab[1];  // pour accéder à une valeur d'un array, on met son indice entre [] après le nom de cet array
+
+	//-----------
+	// Tableau associatif :
+	// Dans un tableau associatif, nous pouvons choisir le nom des indices :
+	$couleur = array(
+					'j' => 'jaune',
+					'b' => 'bleu',
+					'v' => 'vert'
+	);
+
+	// Pour accéder à un élément du tableau associatif : 
+	echo 'La seconde couleur de notre tableau est le ' . $couleur['b'] . '<br>';
+	echo "La seconde couleur de notre tableau est le $couleur[b] <br>"; // affiche aussi "bleu". Un array écrit dans des guillemets ou des quotes perd les quotes autour de son indice
+
+
+
+
+	// Compter le nombre d'éléments contenus dans un array :
+	echo 'Taille du tableau :' . count($couleur) . '<br>'; // affiche 3 (éléments)
+	echo 'Taille du tableau :' . sizeof($couleur) . '<br>'; //sizeof() est pareil que count() dont il est un alias
+
+
+	echo '<h2> La boucle foreach pour les arrays </h2>';
+
+	// foreach est un moyen simple de passer en revue un tableau. Elle fonctionne uniquement sur les tableaux et les objets.
+
+	foreach($tab as $valeur){ //Le mot clé 'as' fait partie de la structure du foreach et est obligatoire. La variable $valeur (que l'on nomme comme on veut) vient oarcourir les valeurs du tableau $tab. Quand il u a qu'une seule variable après "as", elle parcourt systématiquement les VALEURS
+		echo $valeur . '<br>'; // on affiche successivement à chaque tour de boucle les éléments du tableau
+	}
+
+	//Parcourir la colonne de indices et la colonne des valeurs :
+	foreach($tab as $indice => $valeur){ // quand il y a 2 variables après "as", la première parcourt toujours les INDICES, et seconde oarcourt toujours les VALEURS
+		echo $indice . 'correspond à ' . $valeur . '<br>';
+		
+	}
+
+	
+	//Exercice :
+	/*
+		Ecrivez un array avec les indices prénom, nom, email et téléphone et mettez y pour valeur des informations fictives. Remarque : cet array ne concerne qu'une seule personne.
+
+		Puis avec une boucle Foreach, affichez les valeurs de votre array dans les <p>, sauf le prenom qui doit être affiché dans un <h3>.	
+	*/
+
+	$informations = array(
+					'prenom' => 'kilic',
+					'nom' => 'aslan',
+					'email' => 'kiwikili@hotmail.fr',
+					'telephone' => '07.51.36.52.08',
+	);
+	for(var i =0; i<$informations.lenght; i++){
+
+		if (i=>1){
+		echo '<p>'. $informations[i] .'</p>'
+		}else echo '<h2> $informations <h2>'
+	}
+
+
+
+
+	?>
+
+
+	
+
 
 
 
