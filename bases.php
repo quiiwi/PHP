@@ -333,25 +333,205 @@ echo afficherBonjour('Luc'); // si la fonction possède un paramètre, il faut obl
 
 
 // Exercice : écrivez une fonction appelée appliqueTva2 qui multiplie un nombre donnée par un taux donné.
-function appliqueTva2($nombre){
-	return $nombre * 1.2;
+function appliqueTva2($nombre,$taux){
+	return $nombre * $taux;
+}
+// votre code:
+
+echo appliqueTva2(5,1.5);
+
+//----------
+// Exercice :
+/* - Ecrivez la fonction factureEssence() qui calcule le coût total de votre facture en fonction du nombre de litres d'essence que vous lui donnez en appelant la fonction. Cette fonction retourne la phrase "Votre facture est de X euros pour Y litres d'essence" où X et Y sont des variables.
+
+  - Pour cela vous avez besoin du prix au litre. On vous donne une fonction prixLitre() qui vous communique ce prix. Utilisez-la donc dans votre fonction factureEssence().
+  */
+
+  function prixLitre() {
+      return rand(100, 200)/100;   // calcule un prix aléatoire entre 1 et 2 (€)
+  }
+
+// Votre code :
+
+function factureEssence($litreEssence) {
+   $prix = prixLitre() * $litreEssence;
+   return 'Votre facture est de ' . $prix . ' euros pour ' . $litreEssence . ' litres d\'essence';
 }
 
+echo factureEssence(50);
 
 
+//----------------------------
+echo '<h2> Espace local et espace global </h2>';
+//----------------------------
+
+// De l'espace locale à l'espace global :
+function jourSemaine() {
+   $jour = 'mardi';    // variable locale
+   return $jour;   // return permet de sortir une valeur de la fonction
+}
+
+// echo $jour; // ne fonctionne pas car cette variable est locale à la fonction, donc connue et accessible uniquement au sein de cette fonction
+
+echo jourSemaine() . '<br>'; // on récupère la valeur retournée par le return de la fonction : affiche "mardi"
+
+// De l'espace globla à l'espace local :
+$pays = 'France';   // variable globale
+
+function affichePays() {
+   global $pays;   // le mot clé global permet de récupérer une variable globale dans l'espace local de la fonction
+   echo $pays; // on accède donc bien à cette variable
+}
+
+affichePays();  // pas de echo car il est déjà dans la fonction
 
 
+//----------------------------
+echo '<h2> Les structures itératives : les boucles </h2>';
+//----------------------------
+// Les boucles sont destinées à répéter des lignes de codes de façon automatique.
+
+// Boucle while :
+$i = 0; // valeur de départ de la boucle
+
+while ($i < 3) {    // tant que $i est inférieur à 3, on entre dans la boucle
+   // ici le code à répéter 
+   echo "$i---";   // affiche "0---1---2---"
+   $i++;   // on n'oublie pas d'incrémenter pour que la condition d'entrèe dans la boucle deviennent fausse à un moment donné (sinon on obtient une boucle infinie)
+}
+
+// Note : pas de ";" à la fin du while (= structure)
+
+echo '<br>';
+
+// Exercice : à l'aide d'une boucle while, afficher dans un sélecteur les années depuis 1918 à 2018.
+echo '<select>';
+   echo '<option>1</option>';
+   echo '<option>...</option>';
+echo '</select>';
+
+$annee = 1918;
+echo "<select>";
+while($annee < 2018) {
+   echo "<option>$annee</option>";
+   $annee++;
+}
+echo "</select>";
+
+echo '<br>';
+//-----------
+// Boucle do...while :
+// La boucle do while a la particularité de s'exécuter au moins une fois, puis tant que la condition de fin est vraie.
+
+$j = 0;
+
+do {
+   echo 'Je fais un tour de boucle';
+   $j++;
+} while ($j > 10);  // la condition est évaluée à false tout de suite (1 n'étant pas supérieur à 10), et pourtant la boucle a tourné une fois. Attention au ";" après le while !
+//-----------
+// Boucle for :
+// La boucle for est une autre syntaxe de la boucle while dans laquelle les paramètres valeur de départ, condition d'entrée dans la boucle et incrémentation sont regroupés dans les () du for.
+echo '<br>';
+
+for ($i = 0; $i < 10; $i++) {   // tant que $i est inférieur à 10, on entre dans la boucle, puis on incrémente $i à la fin de la boucle avant de revenir dans la condition
+   echo $i . '<br>';   // on fait 10 tours pour les valeurs de $i allant de 0 à 9
+}
+
+// Exercice : afficher 12 <option> avec les valeurs de 1 à 12 via une boucle for.
+echo '<select>';
+   for ($mois = 1; $mois <= 12; $mois++) {
+       // echo "<option>$mois</option>";  // autre façon de l'écrire :
+       echo '<option>' . $mois . '</option>';
+   }
+echo '</select>';
+
+echo '<br>';
+//----------
+// Boucle foreach :
+// Il existe aussi la boucle foreach que nous aborderons au chapitre des arrays. Elle sert à parcourir les éléments d'un tableau.
 
 
+//----------------------------
+echo '<h2> Exercices de mélanges HTML et PHP </h2>';
+//----------------------------
+
+// Exercice 1 : faites une boucle FOR qui affiche 0 à 9 sur la même ligne. Résultat attendu : "0123456789".
+for ($k = 0; $k < 10; $k++) {
+   echo $k;
+}
+
+echo '<br>';
+
+// Exercice 2 : faites une boucle FOR qui affiche 0 à 9 sur la même ligne dans une table HTML :
+echo '<table border="1">';
+   echo '<tr>';
+       for ($l = 0; $l <= 9; $l++) {
+           echo '<td>' . $l . '</td>';
+       }
+   echo '</tr>';
+echo '</table>';
+
+echo '<hr>';
+// Exercice 3 : faire une table HTML de 10 lignes et 10 colonnes, avec une valeur quelconque à l'intérieur dans un premier temps. Puis dans un second temps, numéroter les cellules de 0 à 99.
+
+echo '<table border="1">';
+       for ($m = 0; $m < 10; $m++) {
+           echo '<tr>' . $m . '</tr>';
+           for ($n = 0; $n <= 9; $n++) {
+               echo '<td>' . $n . '</td>';
+           }
+       }
+echo '</table>';
+
+$numero = 0; //pour la 1ere cellules
+echo '<table border = "1">';
+	for($n = 0; $n <= 9; $n++){
+		echo '<tr>';
+			for ($i = 0; $i <= 9; $i++){
+				echo '<td>'. $numero . '</td>';
+				$numero++;
+			}
+		echo '</tr>';
+	}
+	echo '</table>';
 
 
+	echo '<h2> Les tableaux de données : arrays </h2>';
+	//Un tableau, ou array en anglais, est déclaré comme une variable améliorée dans kaquelle on stocke une multitude de valeurs. Ces valeurs peuvent être de n'importe quel type et possèdent un indice par défaut dont la numérotation commence à 0.
 
+	//Bien souvent on récupérera les informations de la BDD sous forme d'array (ou éventuellement d'objet).
 
+	// Déclarer un array :
+	$liste = array('Grégoire','Nathalie','Emilie','François','Georges'); // on déclare un array avec le mot clé "array"
 
+	// echo $liste; // erreur ('array to string cinversion') car on ne peut pas afficher directement un array en PHP
 
+	//Pour afficher rapidement le contenu de ce tableau :
+	echo '<pre>';
+	var_dump($liste); //affiche ke contenu du tableau avec certaines infos en plus comme le type des éléments
+	echo '</pre>'; //balise HTML qui permet de formater l'affiche du var_dump
 
+	echo '<pre>';
+		print_r($listte);
+	echo '</pre>';
 
+	// Fonction utilisateur pour afficher un print_r :
+	function debug($param){
+		echo '<pre>';
+			print_r($param);
+		echo '</pre>';
+	}
 
+	debug($liste); // pour vérifier que notre fonction marche
+
+	//------
+	//Autre moyen d'affecter des valeurs dans un tableau :
+	$tab = ['France','Italie','Espagne','Portugal']; //on peut utiliser la notation entre crochets pour déclarer un array
+
+	$tab[] = 'Suisse'; //Les crochets vides permettent d'ajouter une valeur à la fin de notre array $tab
+
+	debug($tab);
 
 
 
